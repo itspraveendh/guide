@@ -1,0 +1,2178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build PHP Websites with AI | Complete 7-Step Guide</title>
+  <meta name="description" content="Step-by-step masterclass teaching beginners and developers how to architect, develop, debug, and deploy a complete PHP website with an admin dashboard using AI tools, XAMPP, and Hostinger.">
+  
+  <!-- Inter & Fira Code Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap 5.3.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    :root {
+      --bg-base: #070c18;
+      --bg-surface: #0e172a;
+      --bg-card: #131f37;
+      --bg-card-hover: #1c2b4a;
+      --border-subtle: rgba(255, 255, 255, 0.14);
+      --border-strong: rgba(56, 189, 248, 0.45);
+      
+      /* High-Contrast Readability Palette */
+      --text-main: #ffffff;
+      --text-sub: #e2e8f0;
+      --text-muted: #cbd5e1;
+      --text-highlight: #38bdf8;
+      
+      /* Accents */
+      --accent-cyan: #22d3ee;
+      --accent-blue: #60a5fa;
+      --accent-violet: #a78bfa;
+      --accent-emerald: #34d399;
+      --accent-warning: #fbbf24;
+      --accent-danger: #f87171;
+      --code-bg: #050914;
+      --gradient-brand: linear-gradient(135deg, #38bdf8 0%, #a78bfa 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-sub);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.68;
+      font-size: 1rem;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--text-main);
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+
+    p {
+      color: var(--text-sub);
+    }
+
+    .text-muted {
+      color: var(--text-muted) !important;
+    }
+
+    code, pre {
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* Navbar */
+    .navbar-custom {
+      background: rgba(7, 12, 24, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: all 0.3s ease;
+      z-index: 1030;
+    }
+
+    .navbar-brand-gradient {
+      font-weight: 800;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-link {
+      color: #e2e8f0 !important;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0.5rem 0.95rem !important;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--text-highlight) !important;
+    }
+
+    /* Eyebrow & Badges */
+    .section-eyebrow {
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: #080f1e;
+      background: #38bdf8;
+      display: inline-block;
+      margin-bottom: 0.85rem;
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+    }
+
+    .text-gradient {
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Cards */
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 1.85rem;
+      height: 100%;
+      position: relative;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-strong);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+    }
+
+    .card-icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 1.25rem;
+      background: rgba(56, 189, 248, 0.16);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+    }
+
+    /* Buttons */
+    .btn-gradient-primary {
+      background: var(--gradient-brand);
+      color: #070c18;
+      font-weight: 700;
+      border: none;
+      padding: 0.8rem 1.65rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 18px rgba(56, 189, 248, 0.32);
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .btn-gradient-primary:hover {
+      color: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(56, 189, 248, 0.45);
+    }
+
+    .btn-outline-custom {
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 0.8rem 1.45rem;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-outline-custom:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: #38bdf8;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* Badges */
+    .tech-badge {
+      font-size: 0.85rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      background: #172544;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-weight: 600;
+    }
+
+    /* Timeline */
+    .timeline-step {
+      border-left: 2px solid #38bdf8;
+      padding-left: 2.2rem;
+      position: relative;
+      margin-bottom: 3rem;
+    }
+
+    .timeline-step::before {
+      content: '';
+      position: absolute;
+      left: -9px;
+      top: 0;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #38bdf8;
+      border: 3px solid var(--bg-base);
+      box-shadow: 0 0 12px #38bdf8;
+    }
+
+    .step-number-tag {
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+      display: block;
+    }
+
+    /* Terminal & Code Blocks */
+    .code-terminal {
+      background: var(--code-bg);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.65);
+    }
+
+    .terminal-header {
+      background: #151e34;
+      padding: 0.75rem 1.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .terminal-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+
+    .terminal-body {
+      padding: 1.35rem;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #f1f5f9;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    /* Testing Checklist */
+    .checklist-category-card {
+      background: #0d1629;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 12px;
+      padding: 1.4rem;
+      height: 100%;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      cursor: pointer;
+      user-select: none;
+      font-size: 0.93rem;
+      color: #f8fafc;
+    }
+
+    .checklist-item input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 19px;
+      height: 19px;
+      border: 2px solid rgba(255, 255, 255, 0.45);
+      border-radius: 4px;
+      background: transparent;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .checklist-item input[type="checkbox"]:checked {
+      background-color: var(--accent-emerald);
+      border-color: var(--accent-emerald);
+    }
+
+    .checklist-item input[type="checkbox"]:checked::after {
+      content: '\F26E';
+      font-family: 'bootstrap-icons';
+      font-size: 13px;
+      color: #070c18;
+      font-weight: 900;
+      position: absolute;
+      left: 1px;
+      top: -2px;
+    }
+
+    .checklist-item input[type="checkbox"]:checked + span {
+      text-decoration: line-through;
+      color: #94a3b8;
+    }
+
+    /* Table Component */
+    .custom-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .custom-table th {
+      background: #151f38;
+      padding: 1.15rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #38bdf8;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .custom-table td {
+      background: #0f192f;
+      padding: 1.15rem;
+      font-size: 0.95rem;
+      color: #f1f5f9;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      vertical-align: middle;
+    }
+
+    .custom-table tr:hover td {
+      background: #182647;
+    }
+
+    /* Accordion */
+    .accordion-item {
+      background: #0f1a32 !important;
+      border: 1px solid rgba(255, 255, 255, 0.18) !important;
+      border-radius: 10px !important;
+      margin-bottom: 0.85rem;
+      overflow: hidden;
+    }
+
+    .accordion-button {
+      background: #0f1a32 !important;
+      color: #ffffff !important;
+      font-weight: 600;
+      font-size: 1.02rem;
+      padding: 1.35rem;
+      box-shadow: none !important;
+    }
+
+    .accordion-button:not(.collapsed) {
+      color: #38bdf8 !important;
+      background: rgba(56, 189, 248, 0.12) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .accordion-button::after {
+      filter: invert(1);
+    }
+
+    .accordion-body {
+      background: #0d162a;
+      color: #e2e8f0;
+      font-size: 0.96rem;
+      line-height: 1.75;
+      padding: 1.4rem;
+    }
+
+    /* Progress bar */
+    .progress-track {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      height: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      background: var(--gradient-brand);
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Flowchart Nodes */
+    .flow-node {
+      background: #131f37;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 9px;
+      padding: 0.85rem 1rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #ffffff;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .flow-node:hover {
+      border-color: #38bdf8;
+      background: #1a2948;
+    }
+
+    /* Back to Top */
+    #btnBackToTop {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #3b82f6;
+      color: #fff;
+      border: none;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 18px rgba(59, 130, 246, 0.5);
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    #btnBackToTop:hover {
+      background: #38bdf8;
+      color: #070c18;
+    }
+
+    section {
+      scroll-margin-top: 80px;
+    }
+
+    .bg-surface {
+      background-color: var(--bg-surface) !important;
+    }
+
+    /* Contrast helper alerts */
+    .alert-box {
+      border-radius: 8px;
+      padding: 0.9rem 1.1rem;
+      font-size: 0.92rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .alert-box-info {
+      background: rgba(56, 189, 248, 0.14);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #e0f2fe;
+    }
+
+    .alert-box-danger {
+      background: rgba(248, 113, 113, 0.14);
+      border: 1px solid rgba(248, 113, 113, 0.4);
+      color: #fee2e2;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SECTION A: NAVIGATION BAR -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top" aria-label="Main Navigation">
+      <div class="container-xl">
+        <a class="navbar-brand navbar-brand-gradient" href="#hero">
+          <i class="bi bi-cpu-fill text-info"></i> AI WEB BUILDER
+        </a>
+        <button class="navbar-toggler text-white border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="bi bi-list fs-1 text-white"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+            <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#roadmap">Learning Roadmap</a></li>
+            <li class="nav-item"><a class="nav-link" href="#tools">Tools</a></li>
+            <li class="nav-item"><a class="nav-link" href="#admin-panel">Admin Panel</a></li>
+            <li class="nav-item"><a class="nav-link" href="#testing">Testing Checklist</a></li>
+            <li class="nav-item"><a class="nav-link" href="#deployment">Deployment</a></li>
+            <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+            <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+              <a href="#roadmap" class="btn-gradient-primary btn-sm py-2 px-3">
+                <i class="bi bi-play-circle-fill"></i> Start Learning
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- SECTION B: HERO SECTION -->
+    <section id="hero" class="py-5" style="padding-top: 130px !important;">
+      <div class="container-xl">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <span class="section-eyebrow"><i class="bi bi-stars"></i> Full-Stack Masterclass</span>
+            <h1 class="display-4 fw-bold lh-sm mb-3">
+              Build a Complete <span class="text-gradient">PHP Website</span> with an Admin Panel Using AI
+            </h1>
+            <p class="lead text-sub mb-4 fs-5" style="color: #cbd5e1;">
+              Learn how to plan, design, code, debug, test, and deploy a complete PHP website using ChatGPT, Gemini Flash, XAMPP, VS Code, MySQL, and Hostinger — even if you are starting with only a project idea.
+            </p>
+            
+            <div class="d-flex flex-wrap gap-3 mb-4">
+              <a href="#roadmap" class="btn-gradient-primary">
+                <i class="bi bi-compass"></i> Explore 7-Step Roadmap
+              </a>
+              <a href="#tools" class="btn-outline-custom">
+                <i class="bi bi-tools text-info"></i> View Required Tools
+              </a>
+              <a href="#admin-panel" class="btn-outline-custom">
+                <i class="bi bi-speedometer2 text-warning"></i> Admin Features
+              </a>
+            </div>
+
+            <!-- Tech Badges -->
+            <div class="d-flex flex-wrap gap-2 pt-3 border-top border-secondary border-opacity-25">
+              <span class="tech-badge"><i class="bi bi-chat-quote-fill text-success"></i> ChatGPT</span>
+              <span class="tech-badge"><i class="bi bi-lightning-charge-fill text-warning"></i> Gemini Flash</span>
+              <span class="tech-badge"><i class="bi bi-filetype-php text-primary"></i> PHP 8.x</span>
+              <span class="tech-badge"><i class="bi bi-database-fill text-info"></i> MySQL</span>
+              <span class="tech-badge"><i class="bi bi-hdd-network text-danger"></i> XAMPP</span>
+              <span class="tech-badge"><i class="bi bi-code-slash text-primary"></i> VS Code</span>
+              <span class="tech-badge"><i class="bi bi-globe2 text-violet"></i> Hostinger</span>
+            </div>
+
+            <p class="small text-muted mt-3 mb-0 fst-italic">
+              <i class="bi bi-shield-exclamation text-warning me-1"></i> Disclaimer: AI-generated code must be reviewed, tested, and secured before production deployment.
+            </p>
+          </div>
+
+          <!-- Hero Right-side Visual Workspace Simulation -->
+          <div class="col-lg-6">
+            <div class="code-terminal">
+              <div class="terminal-header">
+                <div class="terminal-dots">
+                  <span class="terminal-dot dot-red"></span>
+                  <span class="terminal-dot dot-yellow"></span>
+                  <span class="terminal-dot dot-green"></span>
+                </div>
+                <div class="text-white small font-monospace"><i class="bi bi-terminal-fill me-1 text-info"></i> ai-workspace-ide &mdash; bash</div>
+                <span class="badge bg-success text-dark fw-bold px-2 py-1" style="font-size: 0.75rem;">Live Session</span>
+              </div>
+              <div class="terminal-body">
+                <!-- Status Indicators Bar -->
+                <div class="d-flex flex-wrap gap-2 pb-3 mb-3 border-bottom border-secondary border-opacity-25 small">
+                  <span class="badge bg-dark border border-secondary border-opacity-50 text-white p-2">
+                    <span class="spinner-grow spinner-grow-sm text-success me-1" style="width: 8px; height: 8px;"></span> Apache: 80, 443
+                  </span>
+                  <span class="badge bg-dark border border-secondary border-opacity-50 text-white p-2">
+                    <i class="bi bi-check2-circle text-info me-1"></i> MySQL: 3306
+                  </span>
+                  <span class="badge bg-dark border border-secondary border-opacity-50 text-white p-2">
+                    <i class="bi bi-shield-lock-fill text-warning me-1"></i> Auth: Active
+                  </span>
+                  <span class="badge bg-dark border border-secondary border-opacity-50 text-white p-2">
+                    <i class="bi bi-cloud-arrow-up text-primary me-1"></i> Deploy: Ready
+                  </span>
+                </div>
+
+                <!-- Simulation Prompt & PHP Generation -->
+                <p class="text-info fw-bold mb-1">// 1. Prompting Gemini Flash with Master Architectural Prompt...</p>
+                <div class="p-3 mb-3 rounded bg-dark border border-secondary border-opacity-50">
+                  <span class="text-warning fw-bold">User Prompt:</span> <span class="text-white">"Generate a secure PDO database singleton & authentication handler with password_hash & prepared statements."</span>
+                </div>
+
+                <p class="text-info fw-bold mb-1">// 2. Generating config/database.php</p>
+                <pre class="m-0 p-3 bg-black rounded border border-secondary border-opacity-25 text-white" style="font-size: 0.88rem;"><code><span style="color: #f59e0b;">&lt;?php</span>
+<span style="color: #ec4899;">class</span> <span style="color: #38bdf8;">Database</span> {
+    <span style="color: #ec4899;">private static</span> $instance = <span style="color: #f59e0b;">null</span>;
+    <span style="color: #ec4899;">public static function</span> <span style="color: #38bdf8;">getConnection</span>(): PDO {
+        <span style="color: #ec4899;">if</span> (!self::$instance) {
+            $dsn = <span style="color: #34d399;">"mysql:host=localhost;dbname=portal_db;charset=utf8mb4"</span>;
+            self::$instance = <span style="color: #ec4899;">new</span> PDO($dsn, <span style="color: #34d399;">"db_user"</span>, <span style="color: #34d399;">"SECURE_PASSWORD"</span>, [
+                PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES =&gt; <span style="color: #f59e0b;">false</span>
+            ]);
+        }
+        <span style="color: #ec4899;">return</span> self::$instance;
+    }
+}</code></pre>
+                
+                <div class="mt-3 p-2 rounded bg-success bg-opacity-10 border border-success border-opacity-25 small text-success d-flex align-items-center justify-content-between">
+                  <span class="text-white"><i class="bi bi-shield-check text-success me-1"></i> SQL Injection Protection: Active (Prepared Statements)</span>
+                  <span class="badge bg-success text-dark">Verified</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION C: WHAT YOU WILL BUILD -->
+    <section id="what-you-build" class="py-5 bg-surface">
+      <div class="container-xl">
+        <div class="text-center max-w-700 mx-auto mb-5">
+          <span class="section-eyebrow">Production Deliverable</span>
+          <h2 class="h1 fw-bold text-gradient">From Idea to a Fully Functional Website</h2>
+          <p class="text-sub fs-5">
+            The curriculum walks you through building an enterprise-grade website and administrative dashboard with modular, scalable PHP architecture.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <!-- 16 Feature Cards -->
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="card-icon-wrap"><i class="bi bi-browser-chrome"></i></div>
+              <h5 class="fw-bold">Public-Facing Pages</h5>
+              <p class="text-sub small">High-converting landing pages, company overview, service catalogs, and mobile-first layouts.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="card-icon-wrap"><i class="bi bi-shield-lock"></i></div>
+              <h5 class="fw-bold">Secure Dashboard</h5>
+              <p class="text-sub small">Protected administrative back-office with responsive sidebar navigation and metrics.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="card-icon-wrap"><i class="bi bi-box-arrow-in-right"></i></div>
+              <h5 class="fw-bold">Login &amp; Session Auth</h5>
+              <p class="text-sub small">Complete authentication lifecycle, session fixation protection, and secure cookie storage.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="card-icon-wrap"><i class="bi bi-person-badge"></i></div>
+              <h5 class="fw-bold">Role-Based RBAC</h5>
+              <p class="text-sub small">Strict permission gates segregating Super Admins, Managers, Editors, and Standard Users.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="card-icon-wrap"><i class="bi bi-database-check"></i></div>
+              <h5 class="fw-bold">MySQL Integration</h5>
+              <p class="text-sub small">Relational schema design, primary/foreign keys, indexing, and transactional integrity.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="card-icon-wrap"><i class="bi bi-arrow-repeat"></i></div>
+              <h5 class="fw-bold">Full CRUD Engine</h5>
+              <p class="text-sub small">Clean Create, Read, Update, and Soft-Delete modules with robust server-side validation.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="card-icon-wrap"><i class="bi bi-people"></i></div>
+              <h5 class="fw-bold">Employee Directory</h5>
+              <p class="text-sub small">Manage staff records, work profiles, departmental assignments, and dynamic status toggles.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="card-icon-wrap"><i class="bi bi-person-vcard"></i></div>
+              <h5 class="fw-bold">Customer Management</h5>
+              <p class="text-sub small">CRM profile tracking, client communication history, orders, and interaction timelines.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="card-icon-wrap"><i class="bi bi-envelope-paper"></i></div>
+              <h5 class="fw-bold">Contact Forms</h5>
+              <p class="text-sub small">AJAX and server-processed contact forms with CSRF tokens and honeypot spam protection.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="card-icon-wrap"><i class="bi bi-send-check"></i></div>
+              <h5 class="fw-bold">PHPMailer &amp; SMTP</h5>
+              <p class="text-sub small">Reliable transactional emails, automated receipts, password resets, and admin notifications.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="card-icon-wrap"><i class="bi bi-search"></i></div>
+              <h5 class="fw-bold">Search, Filter &amp; Pages</h5>
+              <p class="text-sub small">SQL-driven search, multi-condition filtering, sorting toggles, and scalable pagination.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="card-icon-wrap"><i class="bi bi-shield-check"></i></div>
+              <h5 class="fw-bold">Strict Form Validation</h5>
+              <p class="text-sub small">Sanitized inputs, type-checking, regex verification, and XSS-safe output escaping.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="card-icon-wrap"><i class="bi bi-graph-up-arrow"></i></div>
+              <h5 class="fw-bold">Analytics &amp; Reports</h5>
+              <p class="text-sub small">Dynamic calculation widgets, operational summary reports, and CSV data export capabilities.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="card-icon-wrap"><i class="bi bi-phone-flip"></i></div>
+              <h5 class="fw-bold">Responsive Fluid UI</h5>
+              <p class="text-sub small">Pixel-perfect layout execution adapting cleanly across phone, tablet, and desktop screens.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="card-icon-wrap"><i class="bi bi-bug"></i></div>
+              <h5 class="fw-bold">AI Error Debugging</h5>
+              <p class="text-sub small">Methodical error logging, stack trace decoding, and AI-assisted surgical code repair.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="card-icon-wrap"><i class="bi bi-cloud-check"></i></div>
+              <h5 class="fw-bold">Production Hostinger</h5>
+              <p class="text-sub small">Hostinger hPanel setup, remote MySQL configuration, SSL enforcement, and production security hardening.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-5">
+          <p class="small text-white mb-0 bg-dark p-2 rounded d-inline-block border border-secondary border-opacity-50">
+            <i class="bi bi-info-circle text-info me-1"></i> Specific modules are configured dynamically based on your bespoke project specifications.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION D: TOOLS REQUIRED -->
+    <section id="tools" class="py-5">
+      <div class="container-xl">
+        <div class="text-center max-w-700 mx-auto mb-5">
+          <span class="section-eyebrow">Required Arsenal</span>
+          <h2 class="h1 fw-bold text-gradient">The Modern AI Developer Toolkit</h2>
+          <p class="text-sub fs-5">Master the synergy between industry-standard development software and next-generation AI foundation models.</p>
+        </div>
+
+        <div class="row g-4">
+          <!-- 1. ChatGPT -->
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card d-flex flex-column justify-content-between">
+              <div>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <span class="fs-1 text-success"><i class="bi bi-chat-quote-fill"></i></span>
+                  <span class="badge bg-success text-dark fw-bold">Architect</span>
+                </div>
+                <h4 class="fw-bold">1. ChatGPT</h4>
+                <p class="text-info fw-semibold mb-2">Purpose: Strategic Architecture &amp; Prompt Engineering</p>
+                <p class="text-sub small">Plan the project, define comprehensive requirements, synthesize master prompts, perform code reviews, and analyze complex stack errors.</p>
+              </div>
+              <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" class="btn-outline-custom btn-sm mt-3 w-100 justify-content-center">
+                Visit ChatGPT <i class="bi bi-box-arrow-up-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- 2. Gemini Flash -->
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card d-flex flex-column justify-content-between">
+              <div>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <span class="fs-1 text-warning"><i class="bi bi-lightning-charge-fill"></i></span>
+                  <span class="badge bg-warning text-dark fw-bold">Code Generator</span>
+                </div>
+                <h4 class="fw-bold">2. Gemini Flash</h4>
+                <p class="text-info fw-semibold mb-2">Purpose: Rapid UI Prototyping &amp; PHP File Engine</p>
+                <p class="text-sub small">Generate fast, high-context frontend templates, write individual standalone PHP controllers, configure database integrations, and debug code.</p>
+              </div>
+              <a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer" class="btn-outline-custom btn-sm mt-3 w-100 justify-content-center">
+                Visit Gemini <i class="bi bi-box-arrow-up-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- 3. XAMPP -->
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card d-flex flex-column justify-content-between">
+              <div>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <span class="fs-1 text-danger"><i class="bi bi-hdd-network-fill"></i></span>
+                  <span class="badge bg-danger text-white fw-bold">Local Server</span>
+                </div>
+                <h4 class="fw-bold">3. XAMPP</h4>
+                <p class="text-info fw-semibold mb-2">Purpose: Local Apache &amp; MySQL Runtime Environment</p>
+                <p class="text-sub small">Execute Apache and MySQL natively on your local machine to run and test PHP applications without paying for early hosting.</p>
+              </div>
+              <a href="https://www.apachefriends.org/" target="_blank" rel="noopener noreferrer" class="btn-outline-custom btn-sm mt-3 w-100 justify-content-center">
+                Download XAMPP <i class="bi bi-box-arrow-up-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- 4. VS Code -->
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card d-flex flex-column justify-content-between">
+              <div>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <span class="fs-1 text-primary"><i class="bi bi-code-square"></i></span>
+                  <span class="badge bg-primary text-white fw-bold">IDE / Editor</span>
+                </div>
+                <h4 class="fw-bold">4. VS Code</h4>
+                <p class="text-info fw-semibold mb-2">Purpose: Project Directory &amp; Syntax Management</p>
+                <p class="text-sub small">Structure code directories, author and modify PHP scripts, inspect syntax errors, run terminal scripts, and track version control with Git.</p>
+              </div>
+              <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" class="btn-outline-custom btn-sm mt-3 w-100 justify-content-center">
+                Get VS Code <i class="bi bi-box-arrow-up-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- 5. phpMyAdmin -->
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card d-flex flex-column justify-content-between">
+              <div>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <span class="fs-1 text-info"><i class="bi bi-table"></i></span>
+                  <span class="badge bg-info text-dark fw-bold">Database GUI</span>
+                </div>
+                <h4 class="fw-bold">5. phpMyAdmin</h4>
+                <p class="text-info fw-semibold mb-2">Purpose: Visual Schema &amp; Query Management</p>
+                <p class="text-sub small">Visually create databases, import SQL schema blueprints, manage table relationships, run raw SQL queries, and verify CRUD mutations.</p>
+              </div>
+              <a href="https://www.apachefriends.org/" target="_blank" rel="noopener noreferrer" class="btn-outline-custom btn-sm mt-3 w-100 justify-content-center">
+                Included with XAMPP <i class="bi bi-box-arrow-up-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- 6. PHPMailer -->
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card d-flex flex-column justify-content-between">
+              <div>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <span class="fs-1 text-warning"><i class="bi bi-envelope-at-fill"></i></span>
+                  <span class="badge bg-warning text-dark fw-bold">Email Engine</span>
+                </div>
+                <h4 class="fw-bold">6. PHPMailer</h4>
+                <p class="text-info fw-semibold mb-2">Purpose: Enterprise SMTP Delivery Library</p>
+                <p class="text-sub small">Overcome local PHP mail() limitations by dispatching robust, authenticated emails via external SMTP servers like Google Workspace or Brevo.</p>
+              </div>
+              <a href="https://github.com/PHPMailer/PHPMailer" target="_blank" rel="noopener noreferrer" class="btn-outline-custom btn-sm mt-3 w-100 justify-content-center">
+                View GitHub Repository <i class="bi bi-box-arrow-up-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- 7. Hostinger -->
+          <div class="col-md-6 col-lg-12">
+            <div class="feature-card d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-4">
+              <div class="d-flex align-items-center gap-3">
+                <span class="fs-1 text-primary"><i class="bi bi-globe-americas"></i></span>
+                <div>
+                  <h4 class="fw-bold mb-1">7. Hostinger Cloud &amp; Web Hosting</h4>
+                  <p class="text-info fw-semibold mb-1">Purpose: Production Domain Hosting &amp; Cloud Database</p>
+                  <p class="text-sub small mb-0">Publish your finished PHP application live, configure production MySQL users, issue SSL security certificates, and manage automated backups.</p>
+                </div>
+              </div>
+              <a href="https://www.hostinger.com/" target="_blank" rel="noopener noreferrer" class="btn-gradient-primary text-nowrap">
+                Explore Hostinger <i class="bi bi-box-arrow-up-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION E: 7-STEP DEVELOPMENT ROADMAP -->
+    <section id="roadmap" class="py-5 bg-surface">
+      <div class="container-xl">
+        <div class="text-center max-w-700 mx-auto mb-5">
+          <span class="section-eyebrow">The Core Curriculum</span>
+          <h2 class="h1 fw-bold text-gradient">The 7-Step Development Roadmap</h2>
+          <p class="text-sub fs-5">An end-to-end, deterministic engineering workflow to move from project vision to production deployment.</p>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+
+            <!-- STEP 1 -->
+            <div class="timeline-step">
+              <span class="step-number-tag">Step 01</span>
+              <h3 class="fw-bold mb-2">Plan the Complete Website &amp; Generate the Master Prompt</h3>
+              <p class="text-info fw-semibold mb-3">Start with Requirements, Pages, Folder Structure, and Database Planning</p>
+              <p class="text-sub">
+                The most critical phase of AI-assisted engineering is deep contextual requirement scoping. Never prompt for code until the database entity models, role matrices, and file boundaries are explicitly mapped.
+              </p>
+              
+              <div class="p-3 bg-dark rounded border border-secondary border-opacity-50 mb-3">
+                <h6 class="text-white fw-bold mb-2"><i class="bi bi-list-check text-cyan me-1"></i> Actionable Step Tasks:</h6>
+                <ol class="small text-sub ps-3 mb-0">
+                  <li>Describe the business model, operational domain, and target personas.</li>
+                  <li>Draft the public website page hierarchy (Home, About, Services, Contact, etc.).</li>
+                  <li>Enumerate every administrative view (Dashboard, User Mgmt, Settings, Audit Logs).</li>
+                  <li>Define user roles and explicit permission boundaries (Super Admin, Editor, Customer).</li>
+                  <li>Document every CRUD operation and validation rule for incoming form requests.</li>
+                  <li>Standardize the clean PHP folder structure and separation of concerns.</li>
+                  <li>Draft normalized MySQL schema relationships, primary keys, and foreign indices.</li>
+                  <li>Establish email transaction points using PHPMailer and SMTP credentials.</li>
+                  <li>Define security policies (CSRF, PDO prepared statements, input sanitization).</li>
+                  <li>Ask ChatGPT to synthesize a cohesive, comprehensive Master Architecture Prompt.</li>
+                </ol>
+              </div>
+
+              <!-- Folder Structure Blueprint -->
+              <div class="code-terminal mb-3">
+                <div class="terminal-header py-2">
+                  <span class="small font-monospace text-white">Example Recommended Architecture</span>
+                  <button class="btn btn-sm btn-outline-info py-0 px-2" onclick="copyCode('code-folder-structure', this)"><i class="bi bi-clipboard"></i> Copy</button>
+                </div>
+                <pre class="terminal-body p-3 mb-0" id="code-folder-structure"><code>my-php-project/
+├── index.php                 # Public Homepage
+├── about.php                 # About view
+├── contact.php               # Public inquiries form
+├── config/
+│   └── database.php          # PDO Singleton configuration
+├── includes/
+│   ├── header.php            # Global navigation header
+│   ├── footer.php            # Global footer script includes
+│   └── functions.php         # Sanitization, CSRF, helpers
+├── admin/
+│   ├── index.php             # Admin authentication gate
+│   ├── dashboard.php         # Operational KPI interface
+│   ├── users.php             # User CRUD management
+│   └── settings.php          # Application preferences
+├── auth/
+│   ├── login.php             # Login processor
+│   └── logout.php            # Session destroy handler
+├── assets/
+│   ├── css/                  # Styling sheets
+│   ├── js/                   # Frontend scripts
+│   └── images/               # Media files
+├── uploads/                  # User file storage (chown 755)
+├── database/
+│   └── schema.sql            # Table definitions & seeders
+├── vendor/                   # Composer libraries (PHPMailer)
+└── README.md                 # Project documentation</code></pre>
+              </div>
+
+              <div class="alert-box alert-box-info">
+                <strong class="text-white"><i class="bi bi-flag-fill text-info me-1"></i> Expected Result:</strong> A complete architectural blueprint containing pages, database schemas, role matrices, and a master generation prompt.
+              </div>
+              <div class="alert-box alert-box-danger">
+                <strong class="text-white"><i class="bi bi-exclamation-triangle-fill text-danger me-1"></i> Common Mistakes to Avoid:</strong> Jumping straight to coding without a database schema; attempting to generate an entire application in one chaotic prompt.
+              </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="timeline-step">
+              <span class="step-number-tag">Step 02</span>
+              <h3 class="fw-bold mb-2">Generate Website UI &amp; PHP Files with Gemini Flash</h3>
+              <p class="text-info fw-semibold mb-3">Use One Master Prompt and Generate the Project Step by Step</p>
+              <p class="text-sub">
+                Execute a disciplined, incremental code generation loop using Gemini Flash. Never prompt for the entire application at once. Build modularly: UI first, then schemas, database singletons, and CRUD controllers.
+              </p>
+              
+              <div class="p-3 bg-dark rounded border border-secondary border-opacity-50 mb-3">
+                <h6 class="text-white fw-bold mb-2"><i class="bi bi-terminal text-warning me-1"></i> Gemini Flash Generation Rules:</h6>
+                <ul class="small text-sub ps-3 mb-0">
+                  <li><strong>Never generate the entire repository in one prompt:</strong> Divide tasks by individual files.</li>
+                  <li><strong>Specify exact relative file paths:</strong> Ensure the AI explicitly prefixes every file with its folder path.</li>
+                  <li><strong>Demand 100% complete files:</strong> Prohibit comments like <code>/* Code remains unchanged here */</code>.</li>
+                  <li><strong>Lock frontend design first:</strong> Approve HTML/CSS prototypes prior to wrapping them in PHP dynamic loops.</li>
+                  <li><strong>Track an ongoing dependency checklist:</strong> Ensure variable names and database table columns match across all files.</li>
+                </ul>
+              </div>
+
+              <div class="alert-box alert-box-info">
+                <strong class="text-white"><i class="bi bi-flag-fill text-info me-1"></i> Expected Result:</strong> Production-ready, validated PHP files, modular partials (header/footer), and complete schema.sql ready for local execution.
+              </div>
+              <div class="alert-box alert-box-danger">
+                <strong class="text-white"><i class="bi bi-exclamation-triangle-fill text-danger me-1"></i> Common Mistakes to Avoid:</strong> Blindly pasting code without reviewing database connection names; letting AI overwrite existing working files without version control.
+              </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="timeline-step">
+              <span class="step-number-tag">Step 03</span>
+              <h3 class="fw-bold mb-2">Install XAMPP &amp; Run the Website Locally</h3>
+              <p class="text-info fw-semibold mb-3">Set Up Apache, MySQL, and Localhost</p>
+              <p class="text-sub">
+                Establish an isolated local development environment using XAMPP so your PHP scripts execute through Apache and query a local MySQL database.
+              </p>
+
+              <div class="p-3 bg-dark rounded border border-secondary border-opacity-50 mb-3">
+                <h6 class="text-white fw-bold mb-2"><i class="bi bi-gear-wide-connected text-primary me-1"></i> Execution Workflow:</h6>
+                <ol class="small text-sub ps-3 mb-0">
+                  <li>Download and install XAMPP from the official Apache Friends website.</li>
+                  <li>Launch XAMPP Control Panel and boot <strong>Apache</strong> and <strong>MySQL</strong>.</li>
+                  <li>Navigate to the document root: <code>C:\xampp\htdocs\</code> (or <code>/Applications/XAMPP/htdocs/</code> on macOS).</li>
+                  <li>Create your project sub-folder: <code>my-php-project</code>.</li>
+                  <li>Place all your generated PHP files and assets into this directory.</li>
+                  <li>Open <code>http://localhost/phpmyadmin/</code> in your browser.</li>
+                  <li>Create a new database (e.g., <code>portal_db</code>) using <code>utf8mb4_unicode_ci</code> collation.</li>
+                  <li>Click <strong>Import</strong> and upload your <code>database/schema.sql</code> file.</li>
+                  <li>Update your <code>config/database.php</code> credentials (typically user: <code>root</code>, password: <code>""</code>).</li>
+                  <li>Access your running app in the browser at <code>http://localhost/my-php-project/</code>.</li>
+                </ol>
+              </div>
+
+              <div class="alert-box alert-box-info">
+                <strong class="text-white"><i class="bi bi-flag-fill text-info me-1"></i> Expected Result:</strong> Apache &amp; MySQL services active, database tables visible in phpMyAdmin, and the homepage rendering via localhost.
+              </div>
+              <div class="alert-box alert-box-danger">
+                <strong class="text-white"><i class="bi bi-exclamation-triangle-fill text-danger me-1"></i> Common Mistakes to Avoid:</strong> Port 80 conflicts with Skype or IIS; leaving database connection passwords blank in production; forgetting to start the MySQL service.
+              </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="timeline-step">
+              <span class="step-number-tag">Step 04</span>
+              <h3 class="fw-bold mb-2">Open the Entire Project in VS Code</h3>
+              <p class="text-info fw-semibold mb-3">Import the Project and Organize All Files</p>
+              <p class="text-sub">
+                VS Code serves as your command center for inspecting file trees, modifying templates, and diagnosing errors.
+              </p>
+
+              <div class="p-3 bg-dark rounded border border-secondary border-opacity-50 mb-3">
+                <h6 class="text-white fw-bold mb-2"><i class="bi bi-folder-check text-success me-1"></i> Workspace Best Practices:</h6>
+                <ul class="small text-sub ps-3 mb-0">
+                  <li>Open the root folder (<code>htdocs/my-php-project</code>) directly to maintain relative path integrity.</li>
+                  <li>Install indispensable extensions: <strong>PHP Intelephense</strong>, <strong>Prettier</strong>, and <strong>MySQL Workbench/Viewer</strong>.</li>
+                  <li>Initialize local Git version control: <code>git init</code> and commit your initial working tree.</li>
+                  <li>Use VS Code's split-screen feature to compare your database schema with your active PHP model file.</li>
+                </ul>
+              </div>
+
+              <div class="alert-box alert-box-info">
+                <strong class="text-white"><i class="bi bi-flag-fill text-info me-1"></i> Expected Result:</strong> A clean, navigable workspace in VS Code with syntax highlighting and file-tree visibility.
+              </div>
+              <div class="alert-box alert-box-danger">
+                <strong class="text-white"><i class="bi bi-exclamation-triangle-fill text-danger me-1"></i> Common Mistakes to Avoid:</strong> Opening individual files instead of the entire parent folder, breaking relative paths and IDE auto-completion.
+              </div>
+            </div>
+
+            <!-- STEP 5 -->
+            <div class="timeline-step">
+              <span class="step-number-tag">Step 05</span>
+              <h3 class="fw-bold mb-2">Debug Errors Using ChatGPT &amp; Gemini Flash</h3>
+              <p class="text-info fw-semibold mb-3">Copy the Error, Investigate the Cause, Fix the Correct File, and Retest</p>
+              <p class="text-sub">
+                Debugging is an engineering process. Do not guess fixes or rewrite entire applications when an error occurs. Locate the stack trace, isolate the offending file, and prompt the AI for targeted repairs.
+              </p>
+
+              <div class="p-3 bg-dark rounded border border-secondary border-opacity-50 mb-3">
+                <h6 class="text-white fw-bold mb-2"><i class="bi bi-shield-shaded text-danger me-1"></i> 5-Step Surgical Debugging Protocol:</h6>
+                <ol class="small text-sub ps-3 mb-0">
+                  <li><strong>Capture the exact error message:</strong> Copy the full PHP Fatal Error, PDOException, or browser console stack trace.</li>
+                  <li><strong>Inspect server error logs:</strong> Open <code>C:\xampp\apache\logs\error.log</code> or <code>php_error_log</code>.</li>
+                  <li><strong>Sanitize before prompting:</strong> Strip sensitive database passwords, API tokens, and private client data.</li>
+                  <li><strong>Prompt for root-cause diagnosis first:</strong> Ask ChatGPT: <em>"Analyze this PHP PDO error. Explain the root cause before providing the fixed snippet."</em></li>
+                  <li><strong>Apply targeted edits:</strong> Update only the affected function or file, save, and retest in your browser.</li>
+                </ol>
+              </div>
+
+              <div class="alert-box alert-box-info">
+                <strong class="text-white"><i class="bi bi-flag-fill text-info me-1"></i> Expected Result:</strong> Rapid resolution of syntax, database, and logic errors without destabilizing working code.
+              </div>
+              <div class="alert-box alert-box-danger">
+                <strong class="text-white"><i class="bi bi-exclamation-triangle-fill text-danger me-1"></i> Common Mistakes to Avoid:</strong> Pasting live API keys or production database credentials into public AI chat windows; modifying core files without backups.
+              </div>
+            </div>
+
+            <!-- STEP 6 -->
+            <div class="timeline-step" id="testing">
+              <span class="step-number-tag">Step 06</span>
+              <h3 class="fw-bold mb-2">Test Every Page, CRUD Operation, and Integration</h3>
+              <p class="text-info fw-semibold mb-3">Perform Complete Functional Testing Before Deployment</p>
+              <p class="text-sub">
+                A project is not complete merely because the homepage loads. Run rigorous verification across user authentication, database CRUD mutations, and email pipelines.
+              </p>
+
+              <!-- Interactive Functional Checklist Module -->
+              <div class="card bg-card border border-secondary border-opacity-50 p-3 p-lg-4 mb-3">
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3">
+                  <div>
+                    <h5 class="fw-bold mb-1 text-white"><i class="bi bi-check2-all text-success me-1"></i> Pre-Flight Testing Matrix</h5>
+                    <p class="small text-sub mb-0">Interactive checklist: Mark items as you verify them on your local server.</p>
+                  </div>
+                  <div class="text-end">
+                    <span class="badge bg-primary fs-6 px-3 py-2" id="checklistCounter">0 / 35 Verified</span>
+                  </div>
+                </div>
+
+                <!-- Progress Track -->
+                <div class="progress-track mb-4">
+                  <div class="progress-fill" id="checklistProgressFill"></div>
+                </div>
+
+                <div class="row g-3">
+                  <!-- Category 1 -->
+                  <div class="col-md-6 col-lg-4">
+                    <div class="checklist-category-card">
+                      <h6 class="text-info fw-bold small text-uppercase mb-3"><i class="bi bi-file-earmark-text me-1"></i> 1. Page Testing</h6>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Homepage renders completely</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>About Us view content verified</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Contact page &amp; form present</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Admin Login page layout</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Logout redirect &amp; destroy</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Dashboard responsive grid</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Mobile viewport layout checks</span></label>
+                    </div>
+                  </div>
+
+                  <!-- Category 2 -->
+                  <div class="col-md-6 col-lg-4">
+                    <div class="checklist-category-card">
+                      <h6 class="text-warning fw-bold small text-uppercase mb-3"><i class="bi bi-shield-lock me-1"></i> 2. Auth &amp; Security</h6>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Valid credentials log in correctly</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Invalid passwords rejected safely</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Session timeout after inactivity</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>RBAC: Editor blocked from Admin</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Direct URL access blocked if guest</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>CSRF tokens verified on POST</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>HTML inputs sanitized safely</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Passwords hashed with BCRYPT</span></label>
+                    </div>
+                  </div>
+
+                  <!-- Category 3 -->
+                  <div class="col-md-6 col-lg-4">
+                    <div class="checklist-category-card">
+                      <h6 class="text-success fw-bold small text-uppercase mb-3"><i class="bi bi-database-gear me-1"></i> 3. CRUD Testing</h6>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Create: Insert valid records</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Read: Display table records</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Update: Edit record &amp; persist</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Delete: Remove or soft-delete</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Duplicate entry handling verified</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Search &amp; pagination checks</span></label>
+                    </div>
+                  </div>
+
+                  <!-- Category 4 -->
+                  <div class="col-md-6 col-lg-4">
+                    <div class="checklist-category-card">
+                      <h6 class="text-cyan fw-bold small text-uppercase mb-3"><i class="bi bi-server me-1"></i> 4. Database Integrity</h6>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>PDO connection error trap works</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Foreign key cascades configured</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>SQL injection blocked via stmt</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>UTF-8 encoding handles emojis</span></label>
+                    </div>
+                  </div>
+
+                  <!-- Category 5 -->
+                  <div class="col-md-6 col-lg-4">
+                    <div class="checklist-category-card">
+                      <h6 class="text-primary fw-bold small text-uppercase mb-3"><i class="bi bi-envelope-check me-1"></i> 5. Email Pipelines</h6>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Valid SMTP credentials verified</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Test contact form dispatches email</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>SPF/DKIM alignment tested</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Failed emails logged gracefully</span></label>
+                    </div>
+                  </div>
+
+                  <!-- Category 6 -->
+                  <div class="col-md-6 col-lg-4">
+                    <div class="checklist-category-card">
+                      <h6 class="text-danger fw-bold small text-uppercase mb-3"><i class="bi bi-patch-check me-1"></i> 6. Production Checks</h6>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Zero broken links in navigation</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>No 404s on CSS/JS asset dependencies</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>display_errors = Off in production</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Upload folder permissions (755)</span></label>
+                      <label class="checklist-item"><input type="checkbox" class="task-chk"><span>Full backup SQL dump exported</span></label>
+                    </div>
+                  </div>
+                </div>
+
+                <p class="small text-sub fst-italic mt-3 mb-0 text-center">
+                  * Note: This tracker represents your manual QA validation progress. Always perform end-to-end integration testing before going live.
+                </p>
+              </div>
+
+              <div class="alert-box alert-box-info">
+                <strong class="text-white"><i class="bi bi-flag-fill text-info me-1"></i> Expected Result:</strong> A verified application with zero critical security flaws, working CRUD forms, and reliable error handling.
+              </div>
+              <div class="alert-box alert-box-danger">
+                <strong class="text-white"><i class="bi bi-exclamation-triangle-fill text-danger me-1"></i> Common Mistakes to Avoid:</strong> Skipping edge-case validation testing; leaving test accounts with default passwords active in production.
+              </div>
+            </div>
+
+            <!-- STEP 7 -->
+            <div class="timeline-step" id="deployment">
+              <span class="step-number-tag">Step 07</span>
+              <h3 class="fw-bold mb-2">Deploy the Website to Hostinger</h3>
+              <p class="text-info fw-semibold mb-3">Move from Localhost to a Live Website</p>
+              <p class="text-sub">
+                Transition your local XAMPP application to Hostinger's production cloud infrastructure, wire up a live MySQL database, configure SSL, and verify your live domain.
+              </p>
+
+              <div class="p-3 bg-dark rounded border border-secondary border-opacity-50 mb-3">
+                <h6 class="text-white fw-bold mb-2"><i class="bi bi-cloud-upload text-violet me-1"></i> Hostinger Live Deployment Protocol:</h6>
+                <ol class="small text-sub ps-3 mb-0">
+                  <li>Log in to your Hostinger hPanel and verify your PHP version is set to 8.2 or 8.3.</li>
+                  <li>In phpMyAdmin (Local XAMPP), export your database: <strong>Quick &rarr; SQL format</strong>.</li>
+                  <li>In Hostinger hPanel, go to <strong>Databases &rarr; MySQL Databases</strong>. Create a database name and user with a strong password.</li>
+                  <li>Launch remote phpMyAdmin from hPanel and <strong>Import</strong> your exported SQL file.</li>
+                  <li>Compress your local project files into a <code>.zip</code> archive (exclude <code>.git</code> and local temporary logs).</li>
+                  <li>Use Hostinger File Manager or SFTP (FileZilla) to upload the zip to <code>public_html</code>.</li>
+                  <li>Extract the archive into <code>public_html</code>.</li>
+                  <li>Edit <code>config/database.php</code> with your live Hostinger database credentials.</li>
+                  <li>Ensure the SSL certificate is active and toggle <strong>Force HTTPS</strong> in hPanel.</li>
+                  <li>Verify that <code>display_errors = Off</code> in production to keep server path errors hidden.</li>
+                  <li>Perform a live smoke test: log in, run a test CRUD action, and submit the contact form.</li>
+                </ol>
+              </div>
+
+              <div class="alert-box alert-box-info">
+                <strong class="text-white"><i class="bi bi-flag-fill text-info me-1"></i> Expected Result:</strong> A live, publicly accessible website protected by HTTPS, connected to an isolated cloud MySQL database.
+              </div>
+              <div class="alert-box alert-box-danger">
+                <strong class="text-white"><i class="bi bi-exclamation-triangle-fill text-danger me-1"></i> Common Mistakes to Avoid:</strong> Leaving local credentials (<code>localhost</code>, <code>root</code>, empty password) in live configuration files; uploading unencrypted <code>.env</code> files to public directories.
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION F: ADMIN PANEL MANAGEMENT EXPLAINED -->
+    <section id="admin-panel" class="py-5">
+      <div class="container-xl">
+        <div class="text-center max-w-700 mx-auto mb-5">
+          <span class="section-eyebrow">Enterprise Core</span>
+          <h2 class="h1 fw-bold text-gradient">Understand Every Major Admin Panel Module</h2>
+          <p class="text-sub fs-5">A production-ready administrative panel requires well-organized business modules tailored to real-world workflows.</p>
+        </div>
+
+        <!-- 14 Admin Modules Visual Grid -->
+        <div class="row g-3 mb-5">
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="p-3 bg-card border border-secondary border-opacity-25 rounded h-100">
+              <span class="text-primary fs-3"><i class="bi bi-speedometer2"></i></span>
+              <h6 class="fw-bold mt-2 mb-1 text-white">1. Dashboard</h6>
+              <p class="text-sub small mb-0">High-level KPI metric cards, revenue graphs, and real-time operational feeds.</p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="p-3 bg-card border border-secondary border-opacity-25 rounded h-100">
+              <span class="text-success fs-3"><i class="bi bi-people-fill"></i></span>
+              <h6 class="fw-bold mt-2 mb-1 text-white">2. User Management</h6>
+              <p class="text-sub small mb-0">Create, edit, suspend, and manage administrative and client accounts.</p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="p-3 bg-card border border-secondary border-opacity-25 rounded h-100">
+              <span class="text-warning fs-3"><i class="bi bi-key-fill"></i></span>
+              <h6 class="fw-bold mt-2 mb-1 text-white">3. Roles &amp; Permissions</h6>
+              <p class="text-sub small mb-0">Fine-grained RBAC matrix controlling module-by-module viewing and write access.</p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="p-3 bg-card border border-secondary border-opacity-25 rounded h-100">
+              <span class="text-info fs-3"><i class="bi bi-person-badge-fill"></i></span>
+              <h6 class="fw-bold mt-2 mb-1 text-white">4. Employee Directory</h6>
+              <p class="text-sub small mb-0">Staff rosters, departmental designations, contact records, and status flags.</p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="p-3 bg-card border border-secondary border-opacity-25 rounded h-100">
+              <span class="text-danger fs-3"><i class="bi bi-person-lines-fill"></i></span>
+              <h6 class="fw-bold mt-2 mb-1 text-white">5. Customer CRM</h6>
+              <p class="text-sub small mb-0">Customer accounts, communication logs, account values, and support history.</p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="p-3 bg-card border border-secondary border-opacity-25 rounded h-100">
+              <span class="text-violet fs-3"><i class="bi bi-layout-text-window-reverse"></i></span>
+              <h6 class="fw-bold mt-2 mb-1 text-white">6. Content Management</h6>
+              <p class="text-sub small mb-0">Manage marketing copy, news updates, terms of service, and visual banners.</p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="p-3 bg-card border border-secondary border-opacity-25 rounded h-100">
+              <span class="text-cyan fs-3"><i class="bi bi-box-seam-fill"></i></span>
+              <h6 class="fw-bold mt-2 mb-1 text-white">7. Products &amp; Services</h6>
+              <p class="text-sub small mb-0">Inventory catalogs, SKU definitions, pricing tiers, and stock management.</p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="p-3 bg-card border border-secondary border-opacity-25 rounded h-100">
+              <span class="text-primary fs-3"><i class="bi bi-receipt-cutoff"></i></span>
+              <h6 class="fw-bold mt-2 mb-1 text-white">8. Invoices &amp; Billing</h6>
+              <p class="text-sub small mb-0">Generate payment invoices, record transaction statuses, and export PDF billing statements.</p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="p-3 bg-card border border-secondary border-opacity-25 rounded h-100">
+              <span class="text-success fs-3"><i class="bi bi-pie-chart-fill"></i></span>
+              <h6 class="fw-bold mt-2 mb-1 text-white">9. Reports &amp; Analytics</h6>
+              <p class="text-sub small mb-0">Sales aggregations, monthly performance metrics, and CSV/Excel exports.</p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="p-3 bg-card border border-secondary border-opacity-25 rounded h-100">
+              <span class="text-warning fs-3"><i class="bi bi-chat-left-dots-fill"></i></span>
+              <h6 class="fw-bold mt-2 mb-1 text-white">10. Contact Inquiries</h6>
+              <p class="text-sub small mb-0">Review inbound contact submissions, assign follow-up tasks, and track statuses.</p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="p-3 bg-card border border-secondary border-opacity-25 rounded h-100">
+              <span class="text-info fs-3"><i class="bi bi-bell-fill"></i></span>
+              <h6 class="fw-bold mt-2 mb-1 text-white">11. Notifications Hub</h6>
+              <p class="text-sub small mb-0">Configure transactional email templates, webhooks, and administrative alerts.</p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="p-3 bg-card border border-secondary border-opacity-25 rounded h-100">
+              <span class="text-danger fs-3"><i class="bi bi-sliders"></i></span>
+              <h6 class="fw-bold mt-2 mb-1 text-white">12. System Settings</h6>
+              <p class="text-sub small mb-0">Company metadata, timezone settings, currency defaults, and maintenance mode toggles.</p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="p-3 bg-card border border-secondary border-opacity-25 rounded h-100">
+              <span class="text-violet fs-3"><i class="bi bi-clock-history"></i></span>
+              <h6 class="fw-bold mt-2 mb-1 text-white">13. Audit &amp; System Logs</h6>
+              <p class="text-sub small mb-0">Immutable tracking of user logins, data changes, and security events.</p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="p-3 bg-card border border-secondary border-opacity-25 rounded h-100">
+              <span class="text-cyan fs-3"><i class="bi bi-database-fill-gear"></i></span>
+              <h6 class="fw-bold mt-2 mb-1 text-white">14. Database Backups</h6>
+              <p class="text-sub small mb-0">Automate SQL backup routines, view disk usage, and manage restoration checkpoints.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sample Live Admin Dashboard Visual Mockup -->
+        <div class="card bg-card border border-secondary border-opacity-50 p-3 p-lg-4">
+          <div class="d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom border-secondary border-opacity-25">
+            <div class="d-flex align-items-center gap-2">
+              <span class="badge bg-danger rounded-circle p-1"></span>
+              <span class="badge bg-warning rounded-circle p-1"></span>
+              <span class="badge bg-success rounded-circle p-1"></span>
+              <span class="ms-2 fw-bold text-white"><i class="bi bi-shield-lock-fill text-primary me-1"></i> Admin Console Simulation (Frontend Demonstration)</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 small">
+              <span class="text-white">Welcome, <strong>SuperAdmin</strong></span>
+              <div class="rounded-circle bg-primary text-white fw-bold d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">SA</div>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <!-- Sidebar Demo -->
+            <div class="col-lg-3 d-none d-lg-block">
+              <div class="p-3 rounded bg-dark border border-secondary border-opacity-25 h-100">
+                <div class="small fw-bold text-uppercase text-white mb-3">Main Menu</div>
+                <div class="d-flex flex-column gap-2">
+                  <a href="#admin-panel" class="text-info fw-bold text-decoration-none"><i class="bi bi-grid-1x2-fill me-2"></i> Dashboard</a>
+                  <a href="#admin-panel" class="text-white text-decoration-none"><i class="bi bi-people me-2"></i> Users</a>
+                  <a href="#admin-panel" class="text-white text-decoration-none"><i class="bi bi-person-badge me-2"></i> Employees</a>
+                  <a href="#admin-panel" class="text-white text-decoration-none"><i class="bi bi-receipt me-2"></i> Invoices</a>
+                  <a href="#admin-panel" class="text-white text-decoration-none d-flex justify-content-between"><span class="text-white"><i class="bi bi-envelope me-2"></i> Messages</span> <span class="badge bg-primary">4</span></a>
+                  <a href="#admin-panel" class="text-white text-decoration-none"><i class="bi bi-gear me-2"></i> Settings</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Content Workspace Demo -->
+            <div class="col-lg-9">
+              <!-- KPI Row -->
+              <div class="row g-2 mb-3">
+                <div class="col-6 col-sm-3">
+                  <div class="p-3 bg-dark border border-secondary border-opacity-50 rounded">
+                    <span class="text-white small">Total Users</span>
+                    <h4 class="fw-bold mb-0 text-white">2,845</h4>
+                    <span class="small text-success fw-bold"><i class="bi bi-arrow-up-short"></i> +12.4%</span>
+                  </div>
+                </div>
+                <div class="col-6 col-sm-3">
+                  <div class="p-3 bg-dark border border-secondary border-opacity-50 rounded">
+                    <span class="text-white small">Active Employees</span>
+                    <h4 class="fw-bold mb-0 text-white">128</h4>
+                    <span class="small text-info fw-bold">All verified</span>
+                  </div>
+                </div>
+                <div class="col-6 col-sm-3">
+                  <div class="p-3 bg-dark border border-secondary border-opacity-50 rounded">
+                    <span class="text-white small">Inquiries</span>
+                    <h4 class="fw-bold mb-0 text-white">34</h4>
+                    <span class="small text-warning fw-bold"><i class="bi bi-hourglass-split"></i> 4 pending</span>
+                  </div>
+                </div>
+                <div class="col-6 col-sm-3">
+                  <div class="p-3 bg-dark border border-secondary border-opacity-50 rounded">
+                    <span class="text-white small">System Health</span>
+                    <h4 class="fw-bold mb-0 text-success">99.9%</h4>
+                    <span class="small text-white">PHP 8.3 &bull; OK</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Mini Table Mockup -->
+              <div class="p-3 rounded bg-dark border border-secondary border-opacity-50">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <span class="fw-bold text-white">Recent System Activity (CRUD Stream)</span>
+                  <span class="badge bg-info text-dark fw-bold">Live Stream</span>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-dark table-sm align-middle mb-0">
+                    <thead>
+                      <tr class="text-info border-bottom border-secondary">
+                        <th>Record ID</th>
+                        <th>User</th>
+                        <th>Module</th>
+                        <th>Action</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="text-warning"><code>#USR-1092</code></td>
+                        <td class="text-white">sarah.dev@example.com</td>
+                        <td>Auth</td>
+                        <td>Login Success</td>
+                        <td><span class="badge bg-success text-dark fw-bold">Logged</span></td>
+                      </tr>
+                      <tr>
+                        <td class="text-warning"><code>#EMP-0412</code></td>
+                        <td class="text-white">alex.m@example.com</td>
+                        <td>Employees</td>
+                        <td>Updated Profile</td>
+                        <td><span class="badge bg-info text-dark fw-bold">Modified</span></td>
+                      </tr>
+                      <tr>
+                        <td class="text-warning"><code>#INV-8911</code></td>
+                        <td class="text-white">client.corp@example.com</td>
+                        <td>Billing</td>
+                        <td>Dispatched SMTP</td>
+                        <td><span class="badge bg-warning text-dark fw-bold">Delivered</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION G: PHP CRUD EXPLAINED -->
+    <section id="crud-explained" class="py-5 bg-surface">
+      <div class="container-xl">
+        <div class="text-center max-w-700 mx-auto mb-5">
+          <span class="section-eyebrow">Database Operations</span>
+          <h2 class="h1 fw-bold text-gradient">How CRUD Works in a PHP Admin Panel</h2>
+          <p class="text-sub fs-5">Master the core Create, Read, Update, and Delete patterns powering dynamic web applications.</p>
+        </div>
+
+        <div class="row g-4 mb-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card border-top border-primary border-4">
+              <span class="badge bg-primary text-white mb-2 fs-6">C &mdash; Create</span>
+              <h5 class="fw-bold">Add New Record</h5>
+              <p class="text-sub small">Receives <code>POST</code> payload, validates data types, generates CSRF tokens, and executes <code>INSERT INTO</code> via prepared statements.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card border-top border-info border-4">
+              <span class="badge bg-info text-dark mb-2 fs-6">R &mdash; Read</span>
+              <h5 class="fw-bold">Display Records</h5>
+              <p class="text-sub small">Runs <code>SELECT</code> with pagination offsets and search filters; sanitizes outputs using <code>htmlspecialchars()</code> to prevent XSS.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card border-top border-warning border-4">
+              <span class="badge bg-warning text-dark mb-2 fs-6">U &mdash; Update</span>
+              <h5 class="fw-bold">Edit Record</h5>
+              <p class="text-sub small">Fetches original entity by primary key, renders an edit form with pre-populated values, and applies an <code>UPDATE</code> query.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card border-top border-danger border-4">
+              <span class="badge bg-danger text-white mb-2 fs-6">D &mdash; Delete</span>
+              <h5 class="fw-bold">Remove / Deactivate</h5>
+              <p class="text-sub small">Validates administrative privileges and soft-deletes records using <code>status = 'inactive'</code> or permanently removes rows via <code>DELETE</code>.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CRUD Workflow Sequence -->
+        <div class="p-4 bg-card border border-secondary border-opacity-50 rounded-3">
+          <h6 class="text-center text-uppercase text-cyan fw-bold mb-3">Enterprise PHP Data Flow</h6>
+          <div class="d-flex flex-wrap align-items-center justify-content-center gap-2 text-center small font-monospace">
+            <span class="p-2 rounded bg-dark border border-secondary text-white fw-bold">Admin Form (POST)</span>
+            <span class="text-cyan"><i class="bi bi-arrow-right fs-4"></i></span>
+            <span class="p-2 rounded bg-dark border border-secondary text-warning fw-bold">PHP Validation &amp; CSRF</span>
+            <span class="text-cyan"><i class="bi bi-arrow-right fs-4"></i></span>
+            <span class="p-2 rounded bg-dark border border-secondary text-info fw-bold">PDO Prepared Stmt</span>
+            <span class="text-cyan"><i class="bi bi-arrow-right fs-4"></i></span>
+            <span class="p-2 rounded bg-dark border border-secondary text-success fw-bold">MySQL Engine</span>
+            <span class="text-cyan"><i class="bi bi-arrow-right fs-4"></i></span>
+            <span class="p-2 rounded bg-dark border border-secondary text-white fw-bold">Updated View</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION H: PHPMAILER & EMAIL INTEGRATION -->
+    <section id="phpmailer" class="py-5">
+      <div class="container-xl">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <span class="section-eyebrow">Transactional Messaging</span>
+            <h2 class="h1 fw-bold text-gradient">Send Website Emails with PHPMailer</h2>
+            <p class="text-sub fs-5">
+              Built-in PHP <code>mail()</code> often fails delivery checks because it lacks modern SMTP authentication, SPF/DKIM validation, and encryption headers. PHPMailer solves this reliably.
+            </p>
+
+            <div class="d-flex flex-column gap-3 mb-4">
+              <div class="d-flex gap-3">
+                <span class="fs-3 text-warning"><i class="bi bi-envelope-exclamation-fill"></i></span>
+                <div>
+                  <h6 class="fw-bold mb-1 text-white">Common Email Workflows:</h6>
+                  <p class="small text-sub mb-0">Public contact inquiries, user registration confirmations, password reset links, automated billing receipts, and immediate system error notifications.</p>
+                </div>
+              </div>
+              <div class="d-flex gap-3">
+                <span class="fs-3 text-cyan"><i class="bi bi-shield-check"></i></span>
+                <div>
+                  <h6 class="fw-bold mb-1 text-white">Secure SMTP Configuration:</h6>
+                  <p class="small text-sub mb-0">Always store your SMTP host, port, username, and password in environment variables outside the web document root &mdash; never hardcode credentials in public files.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="code-terminal">
+              <div class="terminal-header">
+                <span class="small font-monospace text-white">src/Mailer.php &mdash; Clean Implementation</span>
+                <button class="btn btn-sm btn-outline-info py-0 px-2" onclick="copyCode('code-phpmailer-snippet', this)"><i class="bi bi-clipboard"></i> Copy</button>
+              </div>
+              <pre class="terminal-body p-3 mb-0" id="code-phpmailer-snippet"><code><span style="color: #f59e0b;">&lt;?php</span>
+<span style="color: #ec4899;">use</span> PHPMailer\PHPMailer\PHPMailer;
+<span style="color: #ec4899;">use</span> PHPMailer\PHPMailer\Exception;
+
+<span style="color: #ec4899;">require</span> <span style="color: #34d399;">'vendor/autoload.php'</span>;
+
+<span style="color: #ec4899;">function</span> <span style="color: #38bdf8;">sendTransactionalEmail</span>($to, $subject, $htmlBody): bool {
+    $mail = <span style="color: #ec4899;">new</span> PHPMailer(<span style="color: #f59e0b;">true</span>);
+    <span style="color: #ec4899;">try</span> {
+        <span style="color: #94a3b8;">// SMTP Provider Configuration</span>
+        $mail-&gt;isSMTP();
+        $mail-&gt;Host       = $_ENV[<span style="color: #34d399;">'SMTP_HOST'</span>];
+        $mail-&gt;SMTPAuth   = <span style="color: #f59e0b;">true</span>;
+        $mail-&gt;Username   = $_ENV[<span style="color: #34d399;">'SMTP_USER'</span>];
+        $mail-&gt;Password   = $_ENV[<span style="color: #34d399;">'SMTP_PASS'</span>];
+        $mail-&gt;SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail-&gt;Port       = <span style="color: #f59e0b;">587</span>;
+
+        <span style="color: #94a3b8;">// Sender &amp; Recipient Headers</span>
+        $mail-&gt;setFrom(<span style="color: #34d399;">'no-reply@domain.com'</span>, <span style="color: #34d399;">'Portal System'</span>);
+        $mail-&gt;addAddress($to);
+
+        <span style="color: #94a3b8;">// Payload</span>
+        $mail-&gt;isHTML(<span style="color: #f59e0b;">true</span>);
+        $mail-&gt;Subject = $subject;
+        $mail-&gt;Body    = $htmlBody;
+
+        <span style="color: #ec4899;">return</span> $mail-&gt;send();
+    } <span style="color: #ec4899;">catch</span> (Exception $e) {
+        error_log(<span style="color: #34d399;">"Email Dispatch Failure: "</span> . $mail-&gt;ErrorInfo);
+        <span style="color: #ec4899;">return false</span>;
+    }
+}</code></pre>
+            </div>
+            <p class="small text-sub mt-2 mb-0 fst-italic">
+              * Note: Successful PHP code execution does not guarantee inbox delivery; verify that your domain's SPF, DKIM, and DMARC DNS records are correctly aligned.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION I: COMMON ERRORS AND SOLUTIONS -->
+    <section id="troubleshooting" class="py-5 bg-surface">
+      <div class="container-xl">
+        <div class="text-center max-w-700 mx-auto mb-5">
+          <span class="section-eyebrow">Defensive Engineering</span>
+          <h2 class="h1 fw-bold text-gradient">Common Errors and Real-World Solutions</h2>
+          <p class="text-sub fs-5">A practical reference for diagnosing and resolving real-world PHP, MySQL, Apache, and hosting errors.</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th style="width: 25%;">Common Issue</th>
+                <th style="width: 25%;">Underlying Root Cause</th>
+                <th style="width: 25%;">Where to Investigate</th>
+                <th style="width: 25%;">Recommended Solution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="fw-bold text-danger"><i class="bi bi-x-circle me-1"></i> Apache does not start</td>
+                <td class="text-sub">Port 80/443 conflict with Skype, IIS, or VMware.</td>
+                <td class="text-info font-monospace small">XAMPP Logs &gt; Apache (error.log)</td>
+                <td>Change port to 8080 in <code>httpd.conf</code> or stop conflicting background services.</td>
+              </tr>
+              <tr>
+                <td class="fw-bold text-danger"><i class="bi bi-x-circle me-1"></i> MySQL does not start</td>
+                <td class="text-sub">Corrupt transaction logs or another MySQL instance on 3306.</td>
+                <td class="text-info font-monospace small">xampp/mysql/data/mysql_error.log</td>
+                <td>Kill existing MySQL background processes or rename corrupt <code>aria_log</code> files.</td>
+              </tr>
+              <tr>
+                <td class="fw-bold text-warning"><i class="bi bi-exclamation-triangle me-1"></i> Localhost returns 404</td>
+                <td class="text-sub">Incorrect subfolder name or missing <code>index.php</code>.</td>
+                <td class="text-info font-monospace small">C:\xampp\htdocs\[folder_name]</td>
+                <td>Verify project files reside directly inside <code>htdocs</code> with correct spelling.</td>
+              </tr>
+              <tr>
+                <td class="fw-bold text-danger"><i class="bi bi-x-circle me-1"></i> PHP Parse / Syntax Error</td>
+                <td class="text-sub">Missing semicolon, unclosed brace, or outdated PHP version.</td>
+                <td class="text-info font-monospace small">Browser screen &amp; VS Code Problems tab</td>
+                <td>Check line numbers in the stack trace and verify opening/closing braces.</td>
+              </tr>
+              <tr>
+                <td class="fw-bold text-danger"><i class="bi bi-x-circle me-1"></i> DB Connection Failure</td>
+                <td class="text-sub">Wrong port, invalid password, or stopped MySQL service.</td>
+                <td class="text-info font-monospace small">config/database.php</td>
+                <td>Verify credentials in phpMyAdmin; check username, password, host, and port.</td>
+              </tr>
+              <tr>
+                <td class="fw-bold text-warning"><i class="bi bi-exclamation-triangle me-1"></i> Unknown Database Error</td>
+                <td class="text-sub">Database has not been created or the name has a typo.</td>
+                <td class="text-info font-monospace small">phpMyAdmin &gt; Databases list</td>
+                <td>Run <code>CREATE DATABASE db_name</code> and ensure the name matches <code>database.php</code>.</td>
+              </tr>
+              <tr>
+                <td class="fw-bold text-warning"><i class="bi bi-exclamation-triangle me-1"></i> Unknown Table or Column</td>
+                <td class="text-sub">Schema migration was not executed or column name is misspelled.</td>
+                <td class="text-info font-monospace small">database/schema.sql vs MySQL Table</td>
+                <td>Re-import <code>schema.sql</code> and ensure your query column names match definitions.</td>
+              </tr>
+              <tr>
+                <td class="fw-bold text-danger"><i class="bi bi-x-circle me-1"></i> Login Session Failure</td>
+                <td class="text-sub"><code>session_start()</code> missing, called too late, or cookie blocked.</td>
+                <td class="text-info font-monospace small">auth/login.php &amp; header.php</td>
+                <td>Ensure <code>session_start()</code> is the first statement before any HTML output.</td>
+              </tr>
+              <tr>
+                <td class="fw-bold text-warning"><i class="bi bi-exclamation-triangle me-1"></i> CRUD Does Not Update</td>
+                <td class="text-sub">Missing <code>WHERE</code> condition, CSRF mismatch, or unfetched form fields.</td>
+                <td class="text-info font-monospace small">admin/controllers/update.php</td>
+                <td>Inspect <code>$_POST</code> using <code>var_dump()</code>; verify the primary key ID exists in query.</td>
+              </tr>
+              <tr>
+                <td class="fw-bold text-sub"><i class="bi bi-dash-circle me-1"></i> Missing CSS / JS Assets</td>
+                <td class="text-sub">Incorrect absolute paths or broken relative links.</td>
+                <td class="text-info font-monospace small">Browser DevTools &gt; Network tab</td>
+                <td>Use base root paths like <code>/assets/css/style.css</code> instead of <code>../../</code>.</td>
+              </tr>
+              <tr>
+                <td class="fw-bold text-danger"><i class="bi bi-x-circle me-1"></i> PHPMailer Auth Failure</td>
+                <td class="text-sub">Invalid SMTP credentials, blocked port 587, or missing app password.</td>
+                <td class="text-info font-monospace small">SMTP Debug ($mail-&gt;SMTPDebug = 2)</td>
+                <td>Generate an App-Specific Password (for Gmail) and verify TLS port configuration.</td>
+              </tr>
+              <tr>
+                <td class="fw-bold text-danger"><i class="bi bi-x-circle me-1"></i> HTTP 500 on Live Hosting</td>
+                <td class="text-sub">Incompatible PHP version, syntax error, or bad <code>.htaccess</code>.</td>
+                <td class="text-info font-monospace small">Hostinger hPanel &gt; Error Logs</td>
+                <td>Inspect the server error log in hPanel; verify live PHP version matches local setup.</td>
+              </tr>
+              <tr>
+                <td class="fw-bold text-warning"><i class="bi bi-exclamation-triangle me-1"></i> Upload Permission Denied</td>
+                <td class="text-sub">Web server user does not have write permissions on uploads folder.</td>
+                <td class="text-info font-monospace small">uploads/ directory permissions</td>
+                <td>Set upload directory permissions to <code>755</code> (<code>chmod -R 755 uploads/</code>) on server.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION J: FINAL PROJECT WORKFLOW DIAGRAM -->
+    <section id="workflow-diagram" class="py-5">
+      <div class="container-xl">
+        <div class="text-center max-w-700 mx-auto mb-5">
+          <span class="section-eyebrow">Architectural Lifecycle</span>
+          <h2 class="h1 fw-bold text-gradient">The Complete End-to-End Development Pipeline</h2>
+          <p class="text-sub fs-5">How each stage connects into a cohesive development workflow.</p>
+        </div>
+
+        <div class="row g-2 justify-content-center">
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="flow-node"><i class="bi bi-lightbulb text-warning"></i> 1. Idea</div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="flow-node"><i class="bi bi-card-checklist text-info"></i> 2. Requirements</div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="flow-node"><i class="bi bi-chat-left-quote text-success"></i> 3. Master Prompt</div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="flow-node"><i class="bi bi-palette text-violet"></i> 4. UI Approval</div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="flow-node"><i class="bi bi-code-slash text-primary"></i> 5. PHP Coding</div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="flow-node"><i class="bi bi-hdd-network text-danger"></i> 6. Local Setup</div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="flow-node"><i class="bi bi-database text-cyan"></i> 7. DB Connect</div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="flow-node"><i class="bi bi-bug text-warning"></i> 8. Debugging</div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="flow-node"><i class="bi bi-patch-check text-success"></i> 9. QA Testing</div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="flow-node"><i class="bi bi-cloud-arrow-up text-primary"></i> 10. Deploy</div>
+          </div>
+          <div class="col-12 col-md-4 col-lg-2">
+            <div class="flow-node bg-primary text-white fw-bold border-primary"><i class="bi bi-rocket-takeoff-fill"></i> 11. Live Site</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION K: FAQ ACCORDION -->
+    <section id="faq" class="py-5 bg-surface">
+      <div class="container-xl">
+        <div class="text-center max-w-700 mx-auto mb-5">
+          <span class="section-eyebrow">Clear Answers</span>
+          <h2 class="h1 fw-bold text-gradient">Frequently Asked Questions</h2>
+          <p class="text-sub fs-5">Direct answers to common questions about building PHP websites with AI assistance.</p>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-9">
+            <div class="accordion" id="faqAccordion">
+
+              <!-- Q1 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="h1">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c1" aria-expanded="false" aria-controls="c1">
+                    1. Can complete beginners use this workflow?
+                  </button>
+                </h2>
+                <div id="c1" class="accordion-collapse collapse" aria-labelledby="h1" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Yes. This roadmap is designed to move systematically from high-level planning to live deployment. However, you should understand web fundamentals like HTML structure, how client-server requests work, and basic database concepts to effectively review AI outputs.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Q2 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="h2">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c2" aria-expanded="false" aria-controls="c2">
+                    2. Do I need to be a PHP expert before starting?
+                  </button>
+                </h2>
+                <div id="c2" class="accordion-collapse collapse" aria-labelledby="h2" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    No. You do not need years of syntax memorization because modern AI models can generate compliant boilerplate. However, you need to understand core programming principles &mdash; variables, conditionals, arrays, database queries, and session management &mdash; so you can spot logical bugs and security risks.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Q3 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="h3">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c3" aria-expanded="false" aria-controls="c3">
+                    3. Can AI generate an entire website in one single prompt?
+                  </button>
+                </h2>
+                <div id="c3" class="accordion-collapse collapse" aria-labelledby="h3" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    No. Attempting to generate a complete multi-page PHP website with a database in one prompt will lead to truncated files, hallucinated variable names, missing dependencies, and unmaintainable code. Robust software requires generating modular files in a planned sequence.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Q4 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="h4">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c4" aria-expanded="false" aria-controls="c4">
+                    4. Why should I generate the code one file at a time?
+                  </button>
+                </h2>
+                <div id="c4" class="accordion-collapse collapse" aria-labelledby="h4" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Generating one file at a time keeps the AI focused on specific responsibilities (single-responsibility principle). This ensures clean parameter names, complete error-handling branches, full security checks, and zero placeholder comments.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Q5 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="h5">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c5" aria-expanded="false" aria-controls="c5">
+                    5. What is the fundamental difference between XAMPP and VS Code?
+                  </button>
+                </h2>
+                <div id="c5" class="accordion-collapse collapse" aria-labelledby="h5" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    VS Code is a source code editor used to write and organize code. XAMPP is a server stack containing Apache and MySQL that executes your PHP code and handles database queries. VS Code edits your files, while XAMPP runs them.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Q6 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="h6">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c6" aria-expanded="false" aria-controls="c6">
+                    6. What exactly is localhost?
+                  </button>
+                </h2>
+                <div id="c6" class="accordion-collapse collapse" aria-labelledby="h6" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <code>localhost</code> (IP <code>127.0.0.1</code>) is a network address pointing directly back to your own computer. When you browse to localhost, your browser talks to the local Apache server running on your machine, rather than reaching out across the internet.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Q7 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="h7">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c7" aria-expanded="false" aria-controls="c7">
+                    7. Why is MySQL required for this project?
+                  </button>
+                </h2>
+                <div id="c7" class="accordion-collapse collapse" aria-labelledby="h7" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Static websites cannot persistently save new user accounts, employee profiles, or contact submissions. MySQL provides persistent relational data storage, allowing your application to query, update, and secure business data.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Q8 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="h8">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c8" aria-expanded="false" aria-controls="c8">
+                    8. How do I debug a PHP error systematically?
+                  </button>
+                </h2>
+                <div id="c8" class="accordion-collapse collapse" aria-labelledby="h8" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Read the exact line number reported in the error message, inspect your server error logs (<code>xampp/apache/logs/error.log</code>), verify the offending variable or query, and share the error context with ChatGPT or Gemini Flash to diagnose the root cause before applying fixes.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Q9 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="h9">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c9" aria-expanded="false" aria-controls="c9">
+                    9. How does PHPMailer send emails?
+                  </button>
+                </h2>
+                <div id="c9" class="accordion-collapse collapse" aria-labelledby="h9" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    PHPMailer opens an encrypted socket connection (usually over TLS port 587) to an established SMTP mail provider. It authenticates with secure credentials and sends properly formatted MIME headers, ensuring reliable inbox delivery.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Q10 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="h10">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c10" aria-expanded="false" aria-controls="c10">
+                    10. Can I deploy a XAMPP project directly to Hostinger?
+                  </button>
+                </h2>
+                <div id="c10" class="accordion-collapse collapse" aria-labelledby="h10" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    You cannot copy the XAMPP software itself, but your application files and database transfer cleanly. Export your local database schema and data as an <code>.sql</code> file, import it into Hostinger's MySQL database, upload your PHP files to <code>public_html</code>, and update your database credentials.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Q11 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="h11">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c11" aria-expanded="false" aria-controls="c11">
+                    11. How do I protect an admin panel from unauthorized access?
+                  </button>
+                </h2>
+                <div id="c11" class="accordion-collapse collapse" aria-labelledby="h11" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Enforce server-side session checks at the top of every administrative file: verify <code>$_SESSION['user_id']</code> and user role before sending any HTML. Additionally, hash passwords with <code>PASSWORD_BCRYPT</code>, enforce HTTPS, and use CSRF protection on all forms.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Q12 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="h12">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c12" aria-expanded="false" aria-controls="c12">
+                    12. How can I confirm that all CRUD operations work properly?
+                  </button>
+                </h2>
+                <div id="c12" class="accordion-collapse collapse" aria-labelledby="h12" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Manually run through each action: create a record, view it in a table list, edit its contents and confirm updates persist, delete the record, and verify the changes directly in phpMyAdmin to confirm your database accurately reflects the state.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION L: FINAL CALL TO ACTION -->
+    <section class="py-5 text-center">
+      <div class="container-xl">
+        <div class="p-5 bg-card border border-secondary border-opacity-50 rounded-4 max-w-800 mx-auto">
+          <span class="section-eyebrow mb-3">Begin Your Journey</span>
+          <h2 class="display-5 fw-bold mb-3 text-gradient">Your Idea Can Become a Working Website. Build It Step by Step.</h2>
+          <p class="lead text-sub mb-4 fs-5">
+            Learn a practical, AI-assisted workflow for planning, developing, testing, and deploying robust PHP websites with custom admin panels.
+          </p>
+          <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="#roadmap" class="btn-gradient-primary">
+              <i class="bi bi-play-circle-fill"></i> Start the 7-Step Roadmap
+            </a>
+            <a href="#tools" class="btn-outline-custom">
+              <i class="bi bi-wrench-adjustable text-info"></i> Review the Required Tools
+            </a>
+          </div>
+          <p class="small text-sub mt-4 mb-0">
+            <i class="bi bi-info-circle text-info me-1"></i> AI is an intelligent development assistant, not a replacement for code review, security checks, and real-world testing.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SECTION M: FOOTER -->
+  <footer class="py-5 bg-base border-top border-secondary border-opacity-25">
+    <div class="container-xl">
+      <div class="row g-4 justify-content-between">
+        <div class="col-lg-4">
+          <a class="navbar-brand-gradient fs-4 mb-3 d-inline-block text-decoration-none" href="#hero">
+            <i class="bi bi-cpu-fill text-info"></i> AI WEB BUILDER
+          </a>
+          <p class="text-sub small">
+            An end-to-end educational blueprint teaching developers and entrepreneurs how to architect, develop, test, and deploy database-driven PHP applications using AI models.
+          </p>
+          <div class="d-flex flex-wrap gap-2 pt-2">
+            <span class="badge bg-dark border border-secondary border-opacity-50 text-white">PHP 8.x</span>
+            <span class="badge bg-dark border border-secondary border-opacity-50 text-white">MySQL</span>
+            <span class="badge bg-dark border border-secondary border-opacity-50 text-white">XAMPP</span>
+            <span class="badge bg-dark border border-secondary border-opacity-50 text-white">VS Code</span>
+            <span class="badge bg-dark border border-secondary border-opacity-50 text-white">Bootstrap 5</span>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h6 class="text-white fw-bold small text-uppercase mb-3">Roadmap Navigation</h6>
+          <ul class="list-unstyled small d-flex flex-column gap-2">
+            <li><a href="#hero" class="text-sub text-decoration-none">Home</a></li>
+            <li><a href="#roadmap" class="text-sub text-decoration-none">7-Step Blueprint</a></li>
+            <li><a href="#tools" class="text-sub text-decoration-none">Developer Stack</a></li>
+            <li><a href="#admin-panel" class="text-sub text-decoration-none">Admin Modules</a></li>
+            <li><a href="#testing" class="text-sub text-decoration-none">Testing Matrix</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h6 class="text-white fw-bold small text-uppercase mb-3">Core Toolset</h6>
+          <ul class="list-unstyled small d-flex flex-column gap-2">
+            <li><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" class="text-sub text-decoration-none">ChatGPT</a></li>
+            <li><a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer" class="text-sub text-decoration-none">Gemini Flash</a></li>
+            <li><a href="https://www.apachefriends.org/" target="_blank" rel="noopener noreferrer" class="text-sub text-decoration-none">XAMPP Server</a></li>
+            <li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" class="text-sub text-decoration-none">Visual Studio Code</a></li>
+            <li><a href="https://www.hostinger.com/" target="_blank" rel="noopener noreferrer" class="text-sub text-decoration-none">Hostinger</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3">
+          <h6 class="text-white fw-bold small text-uppercase mb-3">Engineering Principles</h6>
+          <p class="small text-sub mb-2">
+            Security requires human verification: sanitize inputs with prepared statements, hash passwords with <code>PASSWORD_BCRYPT</code>, and never commit secrets to public repositories.
+          </p>
+          <span class="small text-white">&copy; <span id="currentYear"></span> AI WEB BUILDER. Educational Blueprint.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="btnBackToTop" aria-label="Back to Top">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Bootstrap 5.3.3 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Interactive Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Dynamic Copyright Year
+      const yearEl = document.getElementById('currentYear');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+
+      // 2. Interactive Testing Checklist & Live Progress Bar
+      const checkboxes = document.querySelectorAll('.task-chk');
+      const counterEl = document.getElementById('checklistCounter');
+      const progressFill = document.getElementById('checklistProgressFill');
+      const totalTasks = checkboxes.length;
+
+      function updateChecklistProgress() {
+        let checkedCount = 0;
+        checkboxes.forEach(chk => {
+          if (chk.checked) checkedCount++;
+        });
+
+        if (counterEl) {
+          counterEl.textContent = `${checkedCount} / ${totalTasks} Verified`;
+        }
+
+        if (progressFill) {
+          const percentage = totalTasks > 0 ? (checkedCount / totalTasks) * 100 : 0;
+          progressFill.style.width = `${percentage}%`;
+        }
+      }
+
+      checkboxes.forEach(chk => {
+        chk.addEventListener('change', updateChecklistProgress);
+      });
+      updateChecklistProgress();
+
+      // 3. Back to Top Button
+      const backToTopBtn = document.getElementById('btnBackToTop');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          backToTopBtn.style.display = 'flex';
+        } else {
+          backToTopBtn.style.display = 'none';
+        }
+      });
+
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // 4. Smooth Anchor Navigation with Mobile Collapse Auto-Close
+      const navLinks = document.querySelectorAll('.nav-link, .navbar-brand');
+      const navCollapse = document.getElementById('navContent');
+      const bsCollapse = navCollapse ? new bootstrap.Collapse(navCollapse, { toggle: false }) : null;
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          const targetHref = link.getAttribute('href');
+          if (targetHref && targetHref.startsWith('#')) {
+            const targetEl = document.querySelector(targetHref);
+            if (targetEl) {
+              if (window.innerWidth < 992 && navCollapse && navCollapse.classList.contains('show')) {
+                bsCollapse.hide();
+              }
+            }
+          }
+        });
+      });
+    });
+
+    // 5. Code Copy Engine
+    function copyCode(elementId, btnElement) {
+      const codeElement = document.getElementById(elementId);
+      if (!codeElement) return;
+
+      const textToCopy = codeElement.innerText;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        const originalHtml = btnElement.innerHTML;
+        btnElement.innerHTML = '<i class="bi bi-check2"></i> Copied!';
+        btnElement.classList.replace('btn-outline-info', 'btn-success');
+
+        setTimeout(() => {
+          btnElement.innerHTML = originalHtml;
+          btnElement.classList.replace('btn-success', 'btn-outline-info');
+        }, 2000);
+      }).catch(err => {
+        console.error('Copy execution failed', err);
+      });
+    }
+  </script>
+</body>
+</html>
