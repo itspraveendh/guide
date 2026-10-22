@@ -31,15 +31,15 @@
       --text-muted: #cbd5e1;
       --text-highlight: #38bdf8;
       
-      /* Accents */
+      /* Accents: Crisp Blue & White Theme */
       --accent-cyan: #22d3ee;
-      --accent-blue: #60a5fa;
-      --accent-violet: #a78bfa;
+      --accent-blue: #38bdf8;
+      --accent-violet: #818cf8;
       --accent-emerald: #34d399;
       --accent-warning: #fbbf24;
       --accent-danger: #f87171;
       --code-bg: #050914;
-      --gradient-brand: linear-gradient(135deg, #38bdf8 0%, #a78bfa 100%);
+      --gradient-brand: linear-gradient(135deg, #38bdf8 0%, #ffffff 100%);
     }
 
     * {
@@ -116,7 +116,7 @@
       font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 0.14em;
-      color: #080f1e;
+      color: #070c18;
       background: #38bdf8;
       display: inline-block;
       margin-bottom: 0.85rem;
@@ -125,7 +125,7 @@
     }
 
     .text-gradient {
-      background: var(--gradient-brand);
+      background: linear-gradient(135deg, #ffffff 0%, #38bdf8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -163,7 +163,7 @@
 
     /* Buttons */
     .btn-gradient-primary {
-      background: var(--gradient-brand);
+      background: linear-gradient(135deg, #38bdf8 0%, #60a5fa 100%);
       color: #070c18;
       font-weight: 700;
       border: none;
@@ -180,7 +180,7 @@
     .btn-gradient-primary:hover {
       color: #000;
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(56, 189, 248, 0.45);
+      box-shadow: 0 8px 24px rgba(56, 189, 248, 0.5);
     }
 
     .btn-outline-custom {
@@ -218,12 +218,12 @@
       font-weight: 600;
     }
 
-    /* Timeline */
+    /* Timeline Step Styling with Step Brand Logos */
     .timeline-step {
       border-left: 2px solid #38bdf8;
       padding-left: 2.2rem;
       position: relative;
-      margin-bottom: 3rem;
+      margin-bottom: 3.5rem;
     }
 
     .timeline-step::before {
@@ -247,6 +247,25 @@
       text-transform: uppercase;
       margin-bottom: 0.35rem;
       display: block;
+    }
+
+    /* Step Tool Logo Badge */
+    .step-tool-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #ffffff;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 0.85rem;
+    }
+
+    .step-tool-badge i {
+      font-size: 1.1rem;
     }
 
     /* Terminal & Code Blocks */
@@ -426,7 +445,7 @@
     }
 
     .progress-fill {
-      background: var(--gradient-brand);
+      background: linear-gradient(90deg, #38bdf8 0%, #ffffff 100%);
       height: 100%;
       width: 0%;
       transition: width 0.3s ease;
@@ -932,13 +951,13 @@
       </div>
     </section>
 
-    <!-- SECTION E: 7-STEP DEVELOPMENT ROADMAP -->
+    <!-- SECTION E: 7-STEP DEVELOPMENT ROADMAP WITH TOOL LOGOS -->
     <section id="roadmap" class="py-5 bg-surface">
       <div class="container-xl">
         <div class="text-center max-w-700 mx-auto mb-5">
           <span class="section-eyebrow">The Core Curriculum</span>
           <h2 class="h1 fw-bold text-gradient">The 7-Step Development Roadmap</h2>
-          <p class="text-sub fs-5">An end-to-end, deterministic engineering workflow to move from project vision to production deployment.</p>
+          <p class="text-sub fs-5">An end-to-end, deterministic engineering workflow with dedicated tools mapped to every step.</p>
         </div>
 
         <div class="row justify-content-center">
@@ -946,7 +965,14 @@
 
             <!-- STEP 1 -->
             <div class="timeline-step">
-              <span class="step-number-tag">Step 01</span>
+              <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+                <span class="step-number-tag">Step 01</span>
+                <!-- Logo Tag -->
+                <span class="step-tool-badge">
+                  <i class="bi bi-chat-quote-fill text-success"></i> Powered by ChatGPT (Architect)
+                </span>
+              </div>
+              
               <h3 class="fw-bold mb-2">Plan the Complete Website &amp; Generate the Master Prompt</h3>
               <p class="text-info fw-semibold mb-3">Start with Requirements, Pages, Folder Structure, and Database Planning</p>
               <p class="text-sub">
@@ -1014,7 +1040,14 @@
 
             <!-- STEP 2 -->
             <div class="timeline-step">
-              <span class="step-number-tag">Step 02</span>
+              <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+                <span class="step-number-tag">Step 02</span>
+                <!-- Logo Tag -->
+                <span class="step-tool-badge">
+                  <i class="bi bi-lightning-charge-fill text-warning"></i> Powered by Gemini Flash (Code Generator)
+                </span>
+              </div>
+
               <h3 class="fw-bold mb-2">Generate Website UI &amp; PHP Files with Gemini Flash</h3>
               <p class="text-info fw-semibold mb-3">Use One Master Prompt and Generate the Project Step by Step</p>
               <p class="text-sub">
@@ -1042,7 +1075,14 @@
 
             <!-- STEP 3 -->
             <div class="timeline-step">
-              <span class="step-number-tag">Step 03</span>
+              <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+                <span class="step-number-tag">Step 03</span>
+                <!-- Logo Tag -->
+                <span class="step-tool-badge">
+                  <i class="bi bi-hdd-network-fill text-danger"></i> Powered by XAMPP (Apache, MySQL &amp; phpMyAdmin)
+                </span>
+              </div>
+
               <h3 class="fw-bold mb-2">Install XAMPP &amp; Run the Website Locally</h3>
               <p class="text-info fw-semibold mb-3">Set Up Apache, MySQL, and Localhost</p>
               <p class="text-sub">
@@ -1075,7 +1115,14 @@
 
             <!-- STEP 4 -->
             <div class="timeline-step">
-              <span class="step-number-tag">Step 04</span>
+              <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+                <span class="step-number-tag">Step 04</span>
+                <!-- Logo Tag -->
+                <span class="step-tool-badge">
+                  <i class="bi bi-code-square text-primary"></i> Powered by Visual Studio Code &amp; Git
+                </span>
+              </div>
+
               <h3 class="fw-bold mb-2">Open the Entire Project in VS Code</h3>
               <p class="text-info fw-semibold mb-3">Import the Project and Organize All Files</p>
               <p class="text-sub">
@@ -1102,7 +1149,14 @@
 
             <!-- STEP 5 -->
             <div class="timeline-step">
-              <span class="step-number-tag">Step 05</span>
+              <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+                <span class="step-number-tag">Step 05</span>
+                <!-- Logo Tag -->
+                <span class="step-tool-badge">
+                  <i class="bi bi-bug-fill text-danger"></i> Powered by Dual AI (ChatGPT &amp; Gemini Flash Diagnostics)
+                </span>
+              </div>
+
               <h3 class="fw-bold mb-2">Debug Errors Using ChatGPT &amp; Gemini Flash</h3>
               <p class="text-info fw-semibold mb-3">Copy the Error, Investigate the Cause, Fix the Correct File, and Retest</p>
               <p class="text-sub">
@@ -1130,7 +1184,14 @@
 
             <!-- STEP 6 -->
             <div class="timeline-step" id="testing">
-              <span class="step-number-tag">Step 06</span>
+              <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+                <span class="step-number-tag">Step 06</span>
+                <!-- Logo Tag -->
+                <span class="step-tool-badge">
+                  <i class="bi bi-check2-circle text-success"></i> Powered by Localhost QA &amp; DevTools
+                </span>
+              </div>
+
               <h3 class="fw-bold mb-2">Test Every Page, CRUD Operation, and Integration</h3>
               <p class="text-info fw-semibold mb-3">Perform Complete Functional Testing Before Deployment</p>
               <p class="text-sub">
@@ -1247,7 +1308,14 @@
 
             <!-- STEP 7 -->
             <div class="timeline-step" id="deployment">
-              <span class="step-number-tag">Step 07</span>
+              <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+                <span class="step-number-tag">Step 07</span>
+                <!-- Logo Tag -->
+                <span class="step-tool-badge">
+                  <i class="bi bi-globe2 text-violet"></i> Powered by Hostinger Cloud (hPanel &amp; Remote MySQL)
+                </span>
+              </div>
+
               <h3 class="fw-bold mb-2">Deploy the Website to Hostinger</h3>
               <p class="text-info fw-semibold mb-3">Move from Localhost to a Live Website</p>
               <p class="text-sub">
@@ -1938,11 +2006,11 @@
 
               <!-- Q9 -->
               <div class="accordion-item">
-                <h2 class="accordion-header" id="h9">
+                <h9 class="accordion-header" id="h9">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c9" aria-expanded="false" aria-controls="c9">
                     9. How does PHPMailer send emails?
                   </button>
-                </h2>
+                </h9>
                 <div id="c9" class="accordion-collapse collapse" aria-labelledby="h9" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
                     PHPMailer opens an encrypted socket connection (usually over TLS port 587) to an established SMTP mail provider. It authenticates with secure credentials and sends properly formatted MIME headers, ensuring reliable inbox delivery.
